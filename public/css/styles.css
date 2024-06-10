@@ -11044,3 +11044,35 @@ html {
 .copyright {
   background-color: #1a252f;
 }
+
+
+/* Services */
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+.service-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.service-card img {
+  width: 100%;
+  height: 200px; /* Fixed height for all images */
+  object-fit: cover; /* Maintain aspect ratio and cover the area */
+  border-radius: 5px;
+}
+.service-card h3 {
+  margin-top: 15px;
+  font-size: 1.5em;
+}
+.service-card p {
+  margin: 10px 0;
+}
+.btn-primary {
+  margin-top: auto;
+}
