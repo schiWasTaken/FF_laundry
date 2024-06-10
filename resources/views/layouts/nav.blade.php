@@ -1,19 +1,19 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="#page-top">FF Laundry</a>
+        <a class="navbar-brand" href="/">FF Laundry</a>
         
-        <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/#home')}}">Home</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/#services')}}">Services</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/#about')}}">About</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/mahasiswa')}}">Mahasiswa</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-menu nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/#page-top')}}">Home</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-menu nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/#services')}}">Services</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-menu nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/#about')}}">About</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-menu nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/#contact')}}">Contact</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-menu nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/mahasiswa')}}">Mahasiswa</a></li>
             </ul>
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ms-auto">

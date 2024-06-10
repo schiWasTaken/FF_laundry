@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <!-- Masthead-->
-<header class="masthead bg-primary text-white text-center" id="home">
+<header class="masthead bg-primary text-white text-center">
     <div class="container d-flex align-items-center flex-column">
         <!-- Masthead Avatar Image-->
         <img class="masthead-avatar mb-5" src="assets/img/avataaars.svg" alt="..." />
@@ -21,35 +21,35 @@
     </div>
 </header>
 <section class="page-section" id="services">
-<div class="container">
-    <h1 class="page-section-heading text-center text-uppercase text-secondary mb-5">Our Services</h1>
-    <div class="services-container">
-        <div class="service-card">
-            <img src="{{ asset('assets/img/services/service1.jpg') }}" alt="Dry Cleaning">
-            <h3>Dry Cleaning</h3>
-            <p>Professional dry cleaning services to keep your clothes looking their best.</p>
-            <a href="#" class="btn btn-primary">Learn More</a>
-        </div>
-        <div class="service-card">
-            <img src="{{ asset('assets/img/services/service2.jpg') }}" alt="Wash & Fold">
-            <h3>Wash & Fold</h3>
-            <p>Convenient wash and fold services for your everyday laundry needs.</p>
-            <a href="#" class="btn btn-primary">Learn More</a>
-        </div>
-        <div class="service-card">
-            <img src="{{ asset('assets/img/services/service3.jpg') }}" alt="Ironing Service">
-            <h3>Ironing</h3>
-            <p>Keep your clothes wrinkle-free with our professional ironing services.</p>
-            <a href="#" class="btn btn-primary">Learn More</a>
-        </div>
-        <div class="service-card">
-            <img src="{{ asset('assets/img/services/service4.jpg') }}" alt="Stain Removal Service">
-            <h3>Stain Removal</h3>
-            <p>Expert stain removal to keep your clothes spotless and fresh.</p>
-            <a href="#" class="btn btn-primary">Learn More</a>
+    <div class="container">
+        <h1 class="page-section-heading text-center text-uppercase text-secondary mb-5">Our Services</h1>
+        <div class="services-container">
+            <div class="service-card">
+                <img src="{{ asset('assets/img/services/service1.jpg') }}" alt="Dry Cleaning">
+                <h3>Dry Cleaning</h3>
+                <p>Professional dry cleaning services to keep your clothes looking their best.</p>
+                <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+            <div class="service-card">
+                <img src="{{ asset('assets/img/services/service2.jpg') }}" alt="Wash & Fold">
+                <h3>Wash & Fold</h3>
+                <p>Convenient wash and fold services for your everyday laundry needs.</p>
+                <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+            <div class="service-card">
+                <img src="{{ asset('assets/img/services/service3.jpg') }}" alt="Ironing Service">
+                <h3>Ironing</h3>
+                <p>Keep your clothes wrinkle-free with our professional ironing services.</p>
+                <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+            <div class="service-card">
+                <img src="{{ asset('assets/img/services/service4.jpg') }}" alt="Stain Removal Service">
+                <h3>Stain Removal</h3>
+                <p>Expert stain removal to keep your clothes spotless and fresh.</p>
+                <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
         </div>
     </div>
-</div>
 </section>
 <!-- About Section-->
 <section class="page-section bg-primary text-white mb-0" id="about">
