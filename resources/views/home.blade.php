@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <!-- Masthead-->
-<header class="masthead bg-primary text-white text-center">
+<header class="masthead bg-primary text-white text-center" id="home">
     <div class="container d-flex align-items-center flex-column">
         <!-- Masthead Avatar Image-->
         <img class="masthead-avatar mb-5" src="assets/img/avataaars.svg" alt="..." />

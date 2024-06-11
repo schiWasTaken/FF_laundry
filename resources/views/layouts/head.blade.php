@@ -17,6 +17,5 @@
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet"/>
      <!-- CSRF Token -->
      <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Scripts -->
-    @vite(['resources/js/app.js'])
+
 </head>
