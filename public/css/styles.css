@@ -11076,3 +11076,8 @@ html {
 .btn-primary {
   margin-top: auto;
 }
+
+#map {
+  height: 300px;
+  width: 100%;
+}

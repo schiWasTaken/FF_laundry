@@ -25,29 +25,38 @@
         <h1 class="page-section-heading text-center text-uppercase text-secondary mb-5">Our Services</h1>
         <div class="services-container">
             <div class="service-card">
-                <img src="{{ asset('assets/img/services/service1.jpg') }}" alt="Dry Cleaning">
-                <h3>Dry Cleaning</h3>
+                <img src="{{ asset('assets/img/services/service1.jpg') }}" alt="Wash & Iron">
+                <h3>Wash & Iron</h3>
                 <p>Professional dry cleaning services to keep your clothes looking their best.</p>
-                <a href="#" class="btn btn-primary">Learn More</a>
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                    View
+                </button>
             </div>
             <div class="service-card">
-                <img src="{{ asset('assets/img/services/service2.jpg') }}" alt="Wash & Fold">
-                <h3>Wash & Fold</h3>
+                <img src="{{ asset('assets/img/services/service2.jpg') }}" alt="Wash & Iron (Express)">
+                <h3>Iron Only</h3>
                 <p>Convenient wash and fold services for your everyday laundry needs.</p>
-                <a href="#" class="btn btn-primary">Learn More</a>
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal2">
+                    View
+                </button>
             </div>
-            <div class="service-card">
-                <img src="{{ asset('assets/img/services/service3.jpg') }}" alt="Ironing Service">
-                <h3>Ironing</h3>
-                <p>Keep your clothes wrinkle-free with our professional ironing services.</p>
-                <a href="#" class="btn btn-primary">Learn More</a>
-            </div>
-            <div class="service-card">
-                <img src="{{ asset('assets/img/services/service4.jpg') }}" alt="Stain Removal Service">
-                <h3>Stain Removal</h3>
-                <p>Expert stain removal to keep your clothes spotless and fresh.</p>
-                <a href="#" class="btn btn-primary">Learn More</a>
-            </div>
+
+            <!-- Modals -->
+            @include('layouts.modal', [
+                'modalId' => 'myModal',
+                'modalTitle' => 'Wash & Iron',
+                'buttonConfirm' => 'Request Pickup',
+                'modalContent' => view('modals.wash_iron')->render()
+            ])
+
+            @include('layouts.modal', [
+                'modalId' => 'myModal2',
+                'modalTitle' => 'Iron Only',
+                'buttonConfirm' => 'Request Pickup',
+                'modalContent' => view('modals.iron_only')->render()
+            ])
         </div>
     </div>
 </section>
@@ -147,4 +156,55 @@
         </div>
     </div>
 </section>
+
+<!-- <script>
+    let map;
+    let marker;
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 8
+        });
+
+        map.addListener('click', function(event) {
+            placeMarker(event.latLng);
+        });
+    }
+
+    function placeMarker(location) {
+        if (marker) {
+            marker.setPosition(location);
+        } else {
+            marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+        }
+        document.getElementById('latitude').value = location.lat();
+        document.getElementById('longitude').value = location.lng();
+    }
+
+    function selectService(service) {
+        document.getElementById('serviceType').value = service;
+        document.getElementById('btnNormal').classList.remove('active');
+        document.getElementById('btnExpress').classList.remove('active');
+        if (service === 'normal') {
+            document.getElementById('btnNormal').classList.add('active');
+        } else {
+            document.getElementById('btnExpress').classList.add('active');
+        }
+    }
+
+    function requestPickup() {
+        const serviceType = document.getElementById('serviceType').value;
+        const latitude = document.getElementById('latitude').value;
+        const longitude = document.getElementById('longitude').value;
+        console.log('Requesting pickup for', serviceType, 'service at', latitude, longitude);
+        // Implement the logic to send the request to the server
+    }
+
+    // Initialize the map when the modal is opened
+    document.getElementById('myModal').addEventListener('shown.bs.modal', initMap);
+</script> -->
 @endsection
