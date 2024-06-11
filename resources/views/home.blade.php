@@ -27,34 +27,38 @@
             <div class="service-card">
                 <img src="{{ asset('assets/img/services/service1.jpg') }}" alt="Wash & Iron">
                 <h3>Wash & Iron</h3>
-                <p>Professional dry cleaning services to keep your clothes looking their best.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet animi neque, veritatis quae fugiat rerum magni.</p>
                 <!-- Button to Open the Modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-                    View
+                <button type="button" class="btn btn-primary selectServiceButton" data-bs-toggle="modal" data-bs-target="#service1Modal" data-service="1">
+                    Select
                 </button>
             </div>
             <div class="service-card">
-                <img src="{{ asset('assets/img/services/service2.jpg') }}" alt="Wash & Iron (Express)">
+                <img src="{{ asset('assets/img/services/service3.jpg') }}" alt="Wash & Iron (Express)">
                 <h3>Iron Only</h3>
-                <p>Convenient wash and fold services for your everyday laundry needs.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet animi neque, veritatis quae fugiat rerum magni.</p>
                 <!-- Button to Open the Modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal2">
-                    View
+                <button type="button" class="btn btn-primary selectServiceButton" data-bs-toggle="modal" data-bs-target="#service2Modal" data-service="2">
+                    Select
                 </button>
+            </div>
+            <div class="fixed-bottom bg-dark text-white p-3" id="proceedBanner">
+                <div class="container d-flex justify-content-between align-items-center">
+                    <span id="selectedServicesMessage">You have selected services.</span>
+                    <button id="proceedButton" class="btn btn-success mt-5">Proceed</button>
+                </div>
             </div>
 
             <!-- Modals -->
             @include('layouts.modal', [
-                'modalId' => 'myModal',
+                'modalId' => 'service1Modal',
                 'modalTitle' => 'Wash & Iron',
-                'buttonConfirm' => 'Request Pickup',
                 'modalContent' => view('modals.wash_iron')->render()
             ])
 
             @include('layouts.modal', [
-                'modalId' => 'myModal2',
+                'modalId' => 'service2Modal',
                 'modalTitle' => 'Iron Only',
-                'buttonConfirm' => 'Request Pickup',
                 'modalContent' => view('modals.iron_only')->render()
             ])
         </div>
@@ -156,55 +160,4 @@
         </div>
     </div>
 </section>
-
-<!-- <script>
-    let map;
-    let marker;
-
-    function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: -34.397, lng: 150.644 },
-            zoom: 8
-        });
-
-        map.addListener('click', function(event) {
-            placeMarker(event.latLng);
-        });
-    }
-
-    function placeMarker(location) {
-        if (marker) {
-            marker.setPosition(location);
-        } else {
-            marker = new google.maps.Marker({
-                position: location,
-                map: map
-            });
-        }
-        document.getElementById('latitude').value = location.lat();
-        document.getElementById('longitude').value = location.lng();
-    }
-
-    function selectService(service) {
-        document.getElementById('serviceType').value = service;
-        document.getElementById('btnNormal').classList.remove('active');
-        document.getElementById('btnExpress').classList.remove('active');
-        if (service === 'normal') {
-            document.getElementById('btnNormal').classList.add('active');
-        } else {
-            document.getElementById('btnExpress').classList.add('active');
-        }
-    }
-
-    function requestPickup() {
-        const serviceType = document.getElementById('serviceType').value;
-        const latitude = document.getElementById('latitude').value;
-        const longitude = document.getElementById('longitude').value;
-        console.log('Requesting pickup for', serviceType, 'service at', latitude, longitude);
-        // Implement the logic to send the request to the server
-    }
-
-    // Initialize the map when the modal is opened
-    document.getElementById('myModal').addEventListener('shown.bs.modal', initMap);
-</script> -->
 @endsection

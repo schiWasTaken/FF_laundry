@@ -11081,3 +11081,18 @@ html {
   height: 300px;
   width: 100%;
 }
+
+/* Hidden state */
+#proceedBanner {
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.5s, transform 0.5s;
+  pointer-events: none; /* Ensure it doesn't catch any mouse events while hidden */
+}
+
+/* Visible state */
+#proceedBanner.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all; /* Restore mouse events */
+}
