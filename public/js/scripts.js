@@ -59,9 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.selectServiceButton').forEach(button => {
         button.addEventListener('click', function () {
             const service = button.getAttribute('data-service');
-
-            // Open the modal with the appropriate service and type selected
-            openModal(service);
+            console.log(service);
         });
     });
 
@@ -99,11 +97,6 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = destinationPageUrl;
         console.log('Proceeding with services:', selectedServices);
     });
-
-    function openModal(service) {
-        // Logic to open the modal with the appropriate service and type selected
-        console.log('Opening modal for service:', service);
-    }
 
     function updateServiceButton(service) {
         // Update the select button for the given service to "Change"

@@ -14,6 +14,8 @@ class LaundryServiceController extends Controller
         // You can further process the selected services data here
 
         // Return the view with the selected services data
-        return view('destination-page', compact('selectedServices'));
+        return view('destination-page', [
+            'openRouteServiceApiKey' => env('OPENROUTESERVICE_API_KEY')
+        ], compact('selectedServices'));
     }
 }

@@ -1,10 +1,20 @@
-<!-- resources/views/destination-page.blade.php -->
+@extends('layouts.template')
+@section('title')
+    Home
+@endsection
+@section('content')
+<section class="masthead page-section">
+    <div class="container page">
+        <h1>Destination Page</h1>
 
-<h1>Destination Page</h1>
+        <p>Selected Services:</p>
+        <ul>
+            @foreach ($selectedServices as $key => $value)
+                <li>{{ $key }}: {{ $value }}</li>
+            @endforeach
+        </ul>
 
-<p>Selected Services:</p>
-<ul>
-    @foreach ($selectedServices as $key => $value)
-        <li>{{ $key }}: {{ $value }}</li>
-    @endforeach
-</ul>
+        @include('pick-address')
+    </div>
+</section>
+@endsection
