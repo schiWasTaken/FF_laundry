@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'service1' => [
+    '1' => [
         'name' => 'Wash & Iron',
         'normal' => [
             'price' => 7000,
@@ -14,7 +14,7 @@ return [
             'description' => 'Express (Rp 10.000/kg, 1 day, min. 2kg)',
         ],
     ],
-    'service2' => [
+    '2' => [
         'name' => 'Iron Only',
         'normal' => [
             'price' => 6000,

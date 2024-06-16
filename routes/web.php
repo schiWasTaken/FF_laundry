@@ -9,7 +9,7 @@ use App\Http\Controllers\OrderController;
 Route::get('/', [HomeController::class, 'index']);
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/destination-page', [LaundryServiceController::class, 'index'])->name('destination.page');
+Route::get('/request-pickup', [LaundryServiceController::class, 'index'])->name('request.pickup');
 Route::post('/save-selected-services', [OrderController::class, 'store'])->name('save.selected.services');
 Route::post('/update-order-status/{orderId}', [OrderController::class, 'updateOrderStatus']);
 Route::get('/order-status/{orderId}', [OrderController::class, 'getOrderStatus']);

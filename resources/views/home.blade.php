@@ -204,7 +204,7 @@
             }).join('&');
 
             // Construct the URL of the destination page with the query string
-            const destinationPageUrl = 'destination-page?' + queryString;
+            const destinationPageUrl = 'request-pickup?' + queryString;
 
             // Redirect to the destination page
             window.location.href = destinationPageUrl;

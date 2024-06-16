@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->json('selected_services'); // Storing selected services as JSON
             $table->string('status')->default('Pending'); // Order status
+            $table->string('user_location'); // User location
+            $table->decimal('minimum_total_price', 10, 2)->nullable(); // Minimum total price
             $table->timestamps();
             // Foreign key constraint
             $table->index('user_id');

@@ -7,13 +7,13 @@
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="serviceType2" id="normalService2" value="normal" checked>
                 <label class="form-check-label" for="normalService2">
-                    {{ $prices['service2']['normal']['description'] }}
+                    {{ $prices['2']['normal']['description'] }}
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="serviceType2" id="expressService2" value="express">
                 <label class="form-check-label" for="expressService2">
-                    {{ $prices['service2']['express']['description'] }}
+                    {{ $prices['2']['express']['description'] }}
                 </label>
             </div>
         </form>

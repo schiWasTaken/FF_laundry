@@ -18,7 +18,7 @@
         @include('layouts.modal', [
                 'modalId' => 'confirmPickupModal',
                 'modalTitle' => 'Summary',
-                'modalContent' => view('modals.pickup_bill')->render()
+                'modalContent' => view('modals.pickup-bill')->render()
             ])
     </div>
 </section>
@@ -27,7 +27,8 @@
     document.addEventListener('DOMContentLoaded', function () {
         const selectedServices = {!! json_encode($selectedServices) !!};
         const prices = {!! json_encode($prices) !!};
-        
+        const userLocation = "test";
+        const minimumTotalPrice = 1;
 
         document.getElementById('openBillModalButton').addEventListener('click', function () {
             updateBillModal();
@@ -40,7 +41,8 @@
             form.action = '{{ route("save.selected.services") }}';
             form.innerHTML = `
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <input type="hidden" name="selectedServices" value='${JSON.stringify(selectedServices)}'>
+                <input type="hidden" name="selected_services" value='${JSON.stringify(selectedServices)}'>
+                <input type="hidden" name="user_location" value='${userLocation}'>
             `;
             document.body.appendChild(form);
             form.submit();
@@ -54,10 +56,10 @@
 
             for (const service in selectedServices) {
                 const serviceType = selectedServices[service];
-                const price = prices[`service${service}`][serviceType]['price'];
-                const description = prices[`service${service}`][serviceType]['description'];
-                billDetails.innerHTML += `<li>${prices[`service${service}`]['name']}: ${description}</li>`;
-                total += price * prices[`service${service}`][serviceType]['minKg'];
+                const price = prices[`${service}`][serviceType]['price'];
+                const description = prices[`${service}`][serviceType]['description'];
+                billDetails.innerHTML += `<li>${prices[`${service}`]['name']}: ${description}</li>`;
+                total += price * prices[`${service}`][serviceType]['minKg'];
             }
 
             billTotal.textContent = `Rp ${total.toLocaleString('id-ID')}`;
