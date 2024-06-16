@@ -13,7 +13,6 @@
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-section nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/#services')}}">Services</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-section nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/#about')}}">About</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-section nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/#contact')}}">Contact</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-section nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/mahasiswa')}}">Mahasiswa</a></li>
             </ul>
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ms-auto">

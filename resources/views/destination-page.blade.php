@@ -13,7 +13,7 @@
                 <li>{{ $key }}: {{ $value }}</li>
             @endforeach
         </ul>
-
+        <label class="form-label">Select Pickup Location:</label>
         @include('pick-address')
     </div>
 </section>

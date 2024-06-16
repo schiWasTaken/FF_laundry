@@ -1,6 +1,5 @@
 <div class="mt-3">
-    <label class="form-label">Select Pickup Location:</label>
-    <p class="addressDisplay">Loading address...</p>
+    <p class="addressDisplay"></p>
     <div>
         <button type="button" class="btn btn-primary" id="getLocationButton" data-bs-toggle="modal" data-bs-target="#mapModal">Pick location</button>
     </div>   
@@ -55,16 +54,16 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         let mapInitialized = false;
-        function getGeolocation(callback) {
-            let latitude, longitude = 0;
+        function getGeolocation() {
+            let latitude, longitude;
             // Check if the Geolocation API is supported by the browser
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     latitude = position.coords.latitude;
                     longitude = position.coords.longitude;
-                    callback(latitude, longitude);
                     if (!mapInitialized) {
                         initializeMap(latitude, longitude);
+                        handleLocationSelection(latitude, longitude);
                     } else {
                         updateMap(latitude, longitude);
                     }
@@ -145,9 +144,7 @@
         let latitude, longitude;
         var getLocationButton = document.getElementById('getLocationButton');
         getLocationButton.addEventListener('click', function() {
-            latitude, longitude = getGeolocation(function (latitude, longitude) {
-                handleLocationSelection(latitude, longitude);
-            });
+            latitude, longitude = getGeolocation();
         });
     });
     
