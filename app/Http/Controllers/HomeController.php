@@ -23,6 +23,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // Fetch prices from the configuration
+        $prices = config('prices');
+
+        // Pass the prices to the view
+        return view('home', compact('prices'));
     }
 }

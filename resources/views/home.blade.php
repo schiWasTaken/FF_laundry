@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="service-card">
-                <img src="{{ asset('assets/img/services/service3.jpg') }}" alt="Wash & Iron (Express)">
+                <img src="{{ asset('assets/img/services/service3.jpg') }}" alt="Iron Only">
                 <h3>Iron Only</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet animi neque, veritatis quae fugiat rerum magni.</p>
                 <!-- Button to Open the Modal -->
@@ -57,13 +57,13 @@
             @include('layouts.modal', [
                 'modalId' => 'service1Modal',
                 'modalTitle' => 'Wash & Iron',
-                'modalContent' => view('modals.wash_iron')->render()
+                'modalContent' => view('modals.service1', ['prices' => $prices])->render()
             ])
 
             @include('layouts.modal', [
                 'modalId' => 'service2Modal',
                 'modalTitle' => 'Iron Only',
-                'modalContent' => view('modals.iron_only')->render()
+                'modalContent' => view('modals.service2', ['prices' => $prices])->render()
             ])
         </div>
     </div>

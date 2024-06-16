@@ -4,5 +4,5 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    <button type="button" class="btn btn-primary" data-service="1" data-bs-dismiss="modal">Confirm</button>
+    <button type="button" class="btn btn-primary" id="openBillModalButton" data-service="1" data-bs-toggle="modal" data-bs-target="#confirmPickupModal">Next</button>
 </div>
