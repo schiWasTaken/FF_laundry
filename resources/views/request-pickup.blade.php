@@ -2,26 +2,53 @@
 @section('title')
     Home
 @endsection
+@section('extra')
+    <style>
+        body {
+            overflow: hidden;
+        }
+        .footer {
+            display: none;
+        }
+    </style>
+@endsection
 @section('content')
-<section class="masthead page-section">
-    <div class="container page">
-        <h1>Request Pickup</h1>
-
+<section class="masthead text-center">
+    <div class="container">
+        <img src="{{ asset('assets/img/map.png') }}" alt="map">
         <p>Selected Services:</p>
-        <ul>
-            @foreach ($selectedServices as $key => $value)
-                <li>{{ $key }}: {{ $value }}</li>
-            @endforeach
-        </ul>
-        <label class="form-label">Select Pickup Location:</label>
+        <div class="container">
+        @php
+            $serviceNames = [];
+        @endphp
+
+        @foreach ($selectedServices as $key => $value)
+            @php
+                $serviceNames[] = config('prices')[$key]['name'] . ' (' . config('prices')[$value]['name'] . ')';
+            @endphp
+        @endforeach
+
+        <p>{{ implode(', ', $serviceNames) }}</p>
+        </div>
+        <!-- <label class="form-label">Select Pickup Location:</label> -->
+        <div>
+            <div>
+                <button type="button" class="btn btn-primary" id="getLocationButton" data-bs-toggle="modal" data-bs-target="#mapModal">Pick location</button>
+            </div>   
+        </div>
         @include('pick-address')
-        @include('layouts.modal', [
+    </div>
+</section>
+@include('layouts.modal', [
+                'modalId' => 'mapModal',
+                'modalTitle' => 'Pick Location',
+                'modalContent' => view('modals.map')->render()
+            ])
+@include('layouts.modal', [
                 'modalId' => 'confirmPickupModal',
                 'modalTitle' => 'Summary',
                 'modalContent' => view('modals.pickup-bill')->render()
             ])
-    </div>
-</section>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {

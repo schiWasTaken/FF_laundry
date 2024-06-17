@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'normal' => [
+        'name'=> 'Normal',
+    ],
+    'express' => [
+        'name'=> 'Express',
+    ],
     '1' => [
         'name' => 'Wash & Iron',
         'normal' => [

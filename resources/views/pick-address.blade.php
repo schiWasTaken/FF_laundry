@@ -1,15 +1,15 @@
-<div class="mt-3">
+<!-- <div>
     <p class="addressDisplay"></p>
     <div>
         <button type="button" class="btn btn-primary" id="getLocationButton" data-bs-toggle="modal" data-bs-target="#mapModal">Pick location</button>
     </div>   
-</div>
+</div> -->
 
-@include('layouts.modal', [
+<!-- @include('layouts.modal', [
                 'modalId' => 'mapModal',
                 'modalTitle' => 'Pick Location',
                 'modalContent' => view('modals.map')->render()
-            ])
+            ]) -->
 
 <script>
     // Define your OpenRouteService API key
