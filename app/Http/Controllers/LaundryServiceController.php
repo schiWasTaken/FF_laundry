@@ -11,10 +11,11 @@ class LaundryServiceController extends Controller
         // Retrieve the selected services data from the query string
         $selectedServices = $request->all();
         $prices = config('prices');
+        $outlets = config('outlets');
         // You can further process the selected services data here
 
         // Return the view with the selected services data
         return view('request-pickup', [
-        ], compact('selectedServices', 'prices'));
+        ], compact('selectedServices', 'prices', 'outlets'));
     }
 }

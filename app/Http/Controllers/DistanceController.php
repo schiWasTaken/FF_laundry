@@ -8,7 +8,8 @@ class DistanceController extends Controller
 {
     public function calculateDistance(Request $request)
     {
-        $outletId = 0; // Assuming you are fetching coordinates for outlet 1
+        // TODO: outlet is set to key 0 for now
+        $outletId = 0;
         $outletCoordinates = config('outlets')[$outletId];
 
         $lat1 = $outletCoordinates[0];

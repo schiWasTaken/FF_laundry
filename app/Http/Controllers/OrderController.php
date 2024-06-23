@@ -61,6 +61,7 @@ class OrderController extends Controller
         $validatedData = $request->validate([
             'selected_services' => 'required|string|max:255',
             'user_location' => 'required|string|max:255',
+            'notes' => 'required|string|max:255',
         ]);
         $selectedServices = json_decode($validatedData['selected_services'], true);
         $totalPrice = $this->calculateMinimumTotalPrice($selectedServices);
@@ -69,6 +70,7 @@ class OrderController extends Controller
         $order->selected_services = json_encode($selectedServices);
         $order->status = 'Pending';
         $order->user_location = $validatedData['user_location'];
+        $order->notes = $validatedData['notes'];
         $order->minimum_total_price = $totalPrice;
         $order->user_id = Auth::id();
         Log::info("Order Data: " . json_encode($order->toArray()));

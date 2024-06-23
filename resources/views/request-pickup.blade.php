@@ -15,23 +15,41 @@
 @section('content')
 <section class="masthead text-center">
     <div class="container">
-        <img src="{{ asset('assets/img/map.png') }}" alt="map">
-        <p>Selected Services:</p>
-        <div class="container">
-        @php
-            $serviceNames = [];
-        @endphp
-
-        @foreach ($selectedServices as $key => $value)
-            @php
-                $serviceNames[] = config('prices')[$key]['name'] . ' (' . config('prices')[$value]['name'] . ')';
-            @endphp
-        @endforeach
-
-        <p>{{ implode(', ', $serviceNames) }}</p>
+        <!-- <img src="{{ asset('assets/img/map.png') }}" alt="map"> -->
+        <!-- Outlet List -->
+        <div class="list-group">
+            <div class="list-group-item d-flex justify-content-between align-items-center bg-primary text-white">
+                <h5 class="mb-0">Outlet Info</h5>
+            </div>
+            <li class="list-group-item">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h5 class="mb-1">Outlet 1</h5>
+                    </div>
+                    <div class="col">
+                        <p class="mb-1"><span>Gg. Durian, RT.3/RW.12, Penggilingan, Kec. Cakung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13940</span></p>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary open-map-btn" data-bs-toggle="modal" data-bs-target="#outletMapModal">
+                            Open Map
+                        </button>
+                    </div>
+                </div>
+            </li>
         </div>
-        <!-- <label class="form-label">Select Pickup Location:</label> -->
-        <div>
+        
+        <div class="page-section container">
+            @php
+                $serviceNames = [];
+            @endphp
+
+            @foreach ($selectedServices as $key => $value)
+                @php
+                    $serviceNames[] = config('prices')[$key]['name'] . ' (' . config('prices')[$value]['name'] . ')';
+                @endphp
+            @endforeach
+            <p>Selected Services:</p>
+            <p>{{ implode(', ', $serviceNames) }}</p>
             <div>
                 <button type="button" class="btn btn-primary" id="getLocationButton" data-bs-toggle="modal" data-bs-target="#mapModal">Pick location</button>
             </div>   
@@ -39,24 +57,37 @@
     </div>
 </section>
 @include('layouts.modal', [
-                'modalId' => 'mapModal',
-                'modalTitle' => 'Pick Location',
-                'modalContent' => view('modals.map')->render()
+    'modalId' => 'mapModal',
+    'modalTitle' => 'Pick Location',
+    'modalContent' => view('modals.pick-location-map')->render()
             ])
 @include('layouts.modal', [
-                'modalId' => 'confirmPickupModal',
-                'modalTitle' => 'Summary',
-                'modalContent' => view('modals.pickup-bill')->render()
+    'modalId' => 'confirmPickupModal',
+    'modalTitle' => 'Summary',
+    'modalContent' => view('modals.pickup-bill')->render()
             ])
-</script>           
+@include('layouts.modal', [
+    'modalId' => 'outletMapModal',
+    'modalTitle' => 'Outlet',
+    'modalContent' => view('modals.outlet-map')->render()
+])
+            
+<script>
+    window.config = {
+        'outlets': {!! json_encode($outlets) !!},
+    };
+</script>
 <script type="module">
     let userLocation;
+    let notes;
     import {getCurrentLocation} from '{{asset("./js/pick-address.js")}}';
     document.addEventListener('DOMContentLoaded', function () {
         const selectedServices = {!! json_encode($selectedServices) !!};
         const prices = {!! json_encode($prices) !!};
-        const minimumTotalPrice = 1;
+        const minimumTotalPrice = null;
         document.getElementById('openBillModalButton').addEventListener('click', function () {
+            notes = document.getElementById('notes').value;
+            console.log(notes);
             updateBillModal();
         });
 
@@ -69,6 +100,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="selected_services" value='${JSON.stringify(selectedServices)}'>
                 <input type="hidden" name="user_location" value='${JSON.stringify(userLocation)}'>
+                <input type="hidden" name="notes" value='${JSON.stringify(notes)}'>
             `;
             document.body.appendChild(form);
             form.submit();
@@ -103,7 +135,7 @@
                 const formattedTravelTime = formatDuration(travel_time);
                 resultDiv.innerHTML = `
                     <p>Distance: ${distance.toFixed(2)} km</p>
-                    <p>Estimated Travel Time: ${formattedTravelTime}</p>
+                    <p>ETA: ${formattedTravelTime}</p>
                 `;
             })
             .catch(function (error) {
