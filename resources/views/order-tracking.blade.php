@@ -26,7 +26,6 @@
                     <tr>
                         <th>Order ID</th>
                         <th>Selected Services</th>
-                        <th>Location</th>
                         <th>Notes</th>
                         <th>Status</th>
                         <th>Actions</th>
@@ -48,8 +47,7 @@
                                 @endforeach
                                 {{ implode(', ', $serviceNames) }}
                             </td>
-                            <td>{{ $order->user_location }}</td>
-                            <td>{{ $order->notes }}</td>
+                            <td>{{ json_decode($order->notes, true) }}</td>
                             <td>{{ $order->status }}</td>
                             <td>
                                 @if($order->status == 'Pending')
