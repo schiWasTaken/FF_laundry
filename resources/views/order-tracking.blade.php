@@ -3,43 +3,70 @@
 @section('title', 'Order Tracking')
 
 @section('content')
-    <section class="masthead page-section">
-        <div class="container page">
-            <h1>Order Tracking</h1>
+<section class="masthead page-section">
+    <div class="container page">
+        <h1>Order Tracking</h1>
 
-            <p>Order Status: <span id="orderStatus">Loading...</span></p>
+        @if(session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
 
-            <ul id="serviceList"></ul>
-        </div>
-    </section>
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+        @if($orders->isEmpty())
+            <p>No orders found.</p>
+        @else
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Selected Services</th>
+                        <th>Location</th>
+                        <th>Notes</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($orders as $order)
+                        <tr>
+                            <td>{{ $order->id }}</td>
+                            <td>
+                                @php
+                                    $serviceNames = [];
+                                @endphp
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const orderId = '{{ $orderId }}'; // Pass the order ID to JavaScript
-
-            function fetchOrderStatus() {
-                fetch(`/order-status/${orderId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        document.getElementById('orderStatus').textContent = data.status;
-                    })
-                    .catch(error => {
-                        console.error('Error fetching order status:', error);
-                    });
-            }
-
-            // Fetch order status initially and set interval to update
-            fetchOrderStatus();
-            setInterval(fetchOrderStatus, 5000); // Update status every 5 seconds
-
-            // Load selected services
-            const selectedServices = $selectedServices;
-            const serviceList = document.getElementById('serviceList');
-            for (const [service, type] of Object.entries(selectedServices)) {
-                const li = document.createElement('li');
-                li.textContent = `${service}: ${type}`;
-                serviceList.appendChild(li);
-            }
-        });
-    </script>
+                                @foreach (json_decode($order->selected_services, true) as $key => $value)
+                                    @php
+                                        $serviceNames[] = config('prices')[$key]['name'] . ' (' . config('prices')[$value]['name'] . ')';
+                                    @endphp
+                                @endforeach
+                                {{ implode(', ', $serviceNames) }}
+                            </td>
+                            <td>{{ $order->user_location }}</td>
+                            <td>{{ $order->notes }}</td>
+                            <td>{{ $order->status }}</td>
+                            <td>
+                                @if($order->status == 'Pending')
+                                    <form action="{{ route('order.destroy', $order->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Cancel Order</button>
+                                    </form>
+                                @else
+                                    <span>-</span>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @endif
+    </div>
+</section>
 @endsection

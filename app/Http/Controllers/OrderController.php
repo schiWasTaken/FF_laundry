@@ -52,32 +52,49 @@ class OrderController extends Controller
         return $totalPrice;
     }
 
-
     public function store(Request $request)
     {
-        $user = Auth::user();
+        try {
+            $user = Auth::user();
 
-        // Validate request data
-        $validatedData = $request->validate([
-            'selected_services' => 'required|string|max:255',
-            'user_location' => 'required|string|max:255',
-            'notes' => 'required|string|max:255',
-        ]);
-        $selectedServices = json_decode($validatedData['selected_services'], true);
-        $totalPrice = $this->calculateMinimumTotalPrice($selectedServices);
-        // Create new order
-        $order = new Order();
-        $order->selected_services = json_encode($selectedServices);
-        $order->status = 'Pending';
-        $order->user_location = $validatedData['user_location'];
-        $order->notes = $validatedData['notes'];
-        $order->minimum_total_price = $totalPrice;
-        $order->user_id = Auth::id();
-        Log::info("Order Data: " . json_encode($order->toArray()));
-        $order->user()->associate($user);
-        $order->save();
-        // Return the order ID to be used for tracking
-        return response()->json(['message' => 'Selected services saved successfully', 'order_id' => $order->id]);
+            // Validate request data
+            $validatedData = $request->validate([
+                'selected_services' => 'required|string|max:255',
+                'user_location' => 'required|string|max:255',
+                'notes' => 'string|max:255',
+            ]);
+
+            $selectedServices = json_decode($validatedData['selected_services'], true);
+            $notes = json_decode($validatedData['notes'], true);
+            $totalPrice = $this->calculateMinimumTotalPrice($selectedServices);
+
+            // Create new order
+            $order = new Order();
+            $order->selected_services = json_encode($selectedServices);
+            $order->status = 'Pending';
+            $order->user_location = $validatedData['user_location'];
+            $order->notes = json_encode($notes);
+            $order->minimum_total_price = $totalPrice;
+            $order->user_id = Auth::id();
+            Log::info("Order Data: " . json_encode($order->toArray()));
+            $order->user()->associate($user);
+            $order->save();
+
+            return redirect()->route('order.tracking');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Catch validation errors and redirect back with errors
+            return redirect()->back()->withErrors($e->validator)->withInput();
+        } catch (\Exception $e) {
+            Log::error('Error storing order: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'An error occurred while processing your order. Please try again.');
+        }
+    }
+
+
+    public function getOrderStatus($orderId)
+    {
+        $order = Order::findOrFail($orderId);
+        return response()->json(['status' => $order->status]);
     }
 
     public function updateOrderStatus($orderId, Request $request)
@@ -88,10 +105,31 @@ class OrderController extends Controller
         return response()->json(['message' => 'Order status updated successfully']);
     }
 
-    public function getOrderStatus($orderId)
+    public function getUserOrder()
+    {
+        $user = Auth::user();
+        $orders = Order::where('user_id', $user->id)->where('status', '!=', 'Returned')->get();
+
+        if ($orders) {
+            return view('order-tracking', [
+                'orders' => $orders
+            ]);
+        }
+        else {
+            return redirect()->route('order.tracking')->with('error', 'A weird error occurred.');
+        }
+    }
+
+    public function destroy($orderId)
     {
         $order = Order::findOrFail($orderId);
 
-        return response()->json(['status' => $order->status]);
+        // Check if the order is pending
+        if ($order->status == 'Pending') {
+            $order->delete();
+            return redirect()->route('order.tracking')->with('message', 'Order canceled successfully.');
+        }
+
+        return redirect()->route('order.tracking')->with('error', 'Only pending orders can be canceled.');
     }
 }
