@@ -1,9 +1,9 @@
 <div class="modal-body">
     <!-- Modal content goes here -->
-    <p>Put description here etc</p>
+    <p>Layanan seterika dan lipat.</p>
     <div class="mt-3">
         <form id="service2Form">
-            <label class="form-label">Choose Service Type:</label>
+            <label class="form-label">Pilih layanan:</label>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="serviceType2" id="normalService2" value="normal" checked>
                 <label class="form-check-label" for="normalService2">
