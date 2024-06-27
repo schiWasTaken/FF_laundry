@@ -77,6 +77,8 @@
         'outlets': {!! json_encode($outlets) !!},
     };
 </script>
+<script type="module" src='{{asset("./js/pick-address.js")}}'>
+</script>
 <script type="module">
     let userLocation;
     let notes;

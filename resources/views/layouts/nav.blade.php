@@ -11,6 +11,8 @@
             <ul class="navbar-nav me-auto">
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-section nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/#home')}}">Home</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-section nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/#services')}}">Services</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-section nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/order-tracking')}}">Orders</a></li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-section nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/order-history')}}">History</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-section nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/#about')}}">About</a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-section nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/#contact')}}">Contact</a></li>
             </ul>

@@ -18,6 +18,13 @@ class OrderController extends Controller
         return view('order-tracking', ['orders' => $orders]);
     }
 
+    public function history()
+    {
+        $user = Auth::user();
+        $orders = Order::where('user_id', $user->id)->where('status', 'Returned')->get();
+        return view('order-history', compact('orders'));
+    }
+
     private function calculateMinimumTotalPrice($selectedServices)
     {
         $services = config('prices');
