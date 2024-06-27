@@ -164,7 +164,7 @@ const mapConfigs = {
             const outlets = window.config.outlets;
             // TODO: outlet is set to key 0 for now
             let outletId = 0;
-            const { 0: latitude, 1: longitude } = outlets[outletId];
+            const { 0: latitude, 1: longitude } = outlets[outletId]['location'];
             return [longitude, latitude];
         }
     }

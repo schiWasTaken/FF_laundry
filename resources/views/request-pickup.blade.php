@@ -135,7 +135,7 @@
                 const formattedTravelTime = formatDuration(travel_time);
                 resultDiv.innerHTML = `
                     <p>Distance: ${distance.toFixed(2)} km</p>
-                    <p>ETA: ${formattedTravelTime}</p>
+                    <p>Travel Time: ${formattedTravelTime}</p>
                 `;
             })
             .catch(function (error) {
@@ -143,16 +143,12 @@
             });
         }
 
-         // Function to format travel time in hours and minutes
+        // Function to format travel time in hours and minutes
         function formatDuration(hours) {
-            // Split hours into integer part and fractional part
             const wholeHours = Math.floor(hours);
             const fractionalHours = hours - wholeHours;
-
-            // Calculate minutes from fractional part
             const minutes = Math.round(fractionalHours * 60);
 
-            // Construct formatted string
             let formattedTime = '';
             if (wholeHours > 0) {
                 formattedTime += `${wholeHours} hour${wholeHours > 1 ? 's' : ''}`;
@@ -163,6 +159,7 @@
 
             return formattedTime.trim();
         }
+
     });
 </script>
 @endsection

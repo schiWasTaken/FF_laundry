@@ -15,5 +15,7 @@ Route::post('/save-selected-services', [OrderController::class, 'store'])->name(
 Route::post('/update-order-status/{orderId}', [OrderController::class, 'updateOrderStatus']);
 Route::get('/order-status/{orderId}', [OrderController::class, 'getOrderStatus']);
 Route::get('/calculate-distance', [DistanceController::class, 'calculateDistance']);
-Route::get('/order-tracking', [OrderController::class, 'getUserOrder'])->name('order.tracking');
+Route::get('/order-tracking', [OrderController::class, 'index'])->name('order.tracking');
 Route::delete('/order/{orderId}', [OrderController::class, 'destroy'])->name('order.destroy');
+Route::post('/order/request-finished/{id}', [OrderController::class, 'requestFinished'])->name('order.requestFinished');
+Route::delete('/order/cancel/{id}', [OrderController::class, 'cancel'])->name('order.cancel');

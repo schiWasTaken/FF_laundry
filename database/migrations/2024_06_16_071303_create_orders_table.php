@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('user_location');
             $table->string('notes');
             $table->decimal('minimum_total_price', 10, 2);
+            $table->decimal('travel_time')->nullable();
+            $table->timestamp('eta')->nullable();
             $table->timestamps();
             // Foreign key constraint
             $table->index('user_id');

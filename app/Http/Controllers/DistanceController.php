@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Log;
 
 class DistanceController extends Controller
 {
@@ -10,7 +13,7 @@ class DistanceController extends Controller
     {
         // TODO: outlet is set to key 0 for now
         $outletId = 0;
-        $outletCoordinates = config('outlets')[$outletId];
+        $outletCoordinates = config('outlets')[$outletId]['location'];
 
         $lat1 = $outletCoordinates[0];
         $lon1 = $outletCoordinates[1];
@@ -24,7 +27,7 @@ class DistanceController extends Controller
 
         return response()->json([
             'distance' => $distance,
-            'travel_time' => $travelTime
+            'travel_time' => $travelTime,
         ]);
     }
 

@@ -6,16 +6,16 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
+use App\Http\Controllers\DistanceController;
 
 class OrderController extends Controller
 {
     public function index()
     {
-        // Retrieve orders for the authenticated user
         $user = Auth::user();
-        $orders = $user->orders;
-
-        return response()->json($orders);
+        $orders = Order::where('user_id', $user->id)->where('status', '!=', 'Returned')->get();
+        return view('order-tracking', ['orders' => $orders]);
     }
 
     private function calculateMinimumTotalPrice($selectedServices)
@@ -71,11 +71,34 @@ class OrderController extends Controller
             // Create new order
             $order = new Order();
             $order->selected_services = json_encode($selectedServices);
-            $order->status = 'Pending';
+            $order->status = 'Requesting pickup';
             $order->user_location = $validatedData['user_location'];
             $order->notes = json_encode($notes);
             $order->minimum_total_price = $totalPrice;
             $order->user_id = Auth::id();
+
+            $distanceController = new DistanceController();
+            $requestObject = new Request();
+
+            // Assuming locationParts is an array with latitude and longitude JSON strings
+            $latlon = json_decode($validatedData['user_location'], true);
+            $latitude = $latlon['latitude'];
+            $longitude = $latlon['longitude'];
+            if ($latitude !== null && $longitude !== null) {
+                $requestObject->merge([
+                    'lat2' => $latitude,
+                    'lon2' => $longitude,
+                ]);
+            } else {
+                // Handle the case where latitude or longitude is not found
+                Log::error('Latitude or longitude not found in locationParts.');
+            }
+            $response = $distanceController->calculateDistance($requestObject);
+
+            $responseArray = json_decode(json_encode($response), true);
+            $travelTime = $responseArray['original']['travel_time'];
+            $order->travel_time = $travelTime;
+
             Log::info("Order Data: " . json_encode($order->toArray()));
             $order->user()->associate($user);
             $order->save();
@@ -107,29 +130,57 @@ class OrderController extends Controller
 
     public function getUserOrder()
     {
+        // Retrieve orders for the authenticated user
         $user = Auth::user();
-        $orders = Order::where('user_id', $user->id)->where('status', '!=', 'Returned')->get();
+        $orders = $user->orders;
 
-        if ($orders) {
-            return view('order-tracking', [
-                'orders' => $orders
-            ]);
-        }
-        else {
-            return redirect()->route('order.tracking')->with('error', 'A weird error occurred.');
-        }
+        return response()->json($orders);
     }
 
     public function destroy($orderId)
     {
         $order = Order::findOrFail($orderId);
 
-        // Check if the order is pending
-        if ($order->status == 'Pending') {
+        // Check if the order is Requesting pickup
+        if ($order->status == 'Requesting pickup') {
             $order->delete();
             return redirect()->route('order.tracking')->with('message', 'Order canceled successfully.');
         }
 
-        return redirect()->route('order.tracking')->with('error', 'Only pending orders can be canceled.');
+        return redirect()->route('order.tracking')->with('error', 'You may not cancel at the moment. Please try again later.');
+    }
+
+    public function cancel($id)
+    {
+        $order = Order::find($id);
+
+        if ($order && ($order->status == 'Requesting pickup' || $order->status == 'Scheduled')) {
+            $order->delete();
+            return redirect()->route('order.tracking')->with('message', 'Order cancelled successfully.');
+        }
+
+        if ($order && $order->status == 'Scheduling') {
+            $order->status = 'Ready';
+            $order->save();
+            return redirect()->route('order.tracking')->with('message', 'Scheduling cancelled successfully.');
+        }
+
+        return redirect()->route('order.tracking')->with('error', 'Unable to cancel the order.');
+    }
+
+    public function requestFinished($id)
+    {
+        $order = Order::find($id);
+
+        if ($order && $order->status == 'Ready') {
+            // Perform actions to request finished laundry (e.g., notify the user)
+            // Update order status if needed
+            $order->status = 'Scheduling';
+            $order->save();
+
+            return redirect()->route('order.tracking')->with('message', 'Request for finished laundry has been sent.');
+        }
+
+        return redirect()->route('order.tracking')->with('error', 'Unable to process request for finished laundry.');
     }
 }
