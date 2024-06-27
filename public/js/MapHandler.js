@@ -118,8 +118,6 @@ export default class MapHandler {
                 this.handleLocationSelection(lonlat[1], lonlat[0]);
             });
         }
-
-        this.handleLocationSelection(latitude, longitude);
     }
 
     addMarker(target, longitude, latitude) {

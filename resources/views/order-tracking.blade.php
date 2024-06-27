@@ -1,7 +1,16 @@
 @extends('layouts.template')
 
 @section('title', 'Order Tracking')
-
+@section('extra')
+    <style>
+        body {
+            overflow: hidden;
+        }
+        .footer {
+            display: none;
+        }
+    </style>
+@endsection
 @section('content')
 <section class="masthead page-section">
     <div class="container page">
