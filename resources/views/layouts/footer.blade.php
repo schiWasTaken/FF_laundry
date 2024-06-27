@@ -1,5 +1,5 @@
 <!-- Footer-->
-<footer class="footer text-center">
+<footer class="footer text-center" style="background-color: #55AD9B; color: #F1F8E8;">
     <div class="container">
         <div class="row">
             <!-- Footer About Text-->
@@ -22,7 +22,7 @@
             <div class="col-lg-4">
                 <h4 class="text-uppercase mb-4">Hubungi Kami</h4>
                 <p class="lead mb-0">
-                    08
+                    081617566306
                 </p>
             </div>
             

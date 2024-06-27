@@ -4,7 +4,7 @@ Home
 @endsection
 @section('content')
 <!-- Masthead-->
-<header class="masthead bg-primary text-white text-center" id="home">
+<header class="masthead" style="background-color: #55AD9B; color: #F1F8E8;" id="home">
     <div class="container d-flex align-items-center flex-column">
         <!-- Masthead Avatar Image-->
         <img class="masthead-avatar mb-5" src="assets/img/fflaundrylogo.png" alt="..." />
@@ -12,17 +12,17 @@ Home
         <h1 class="masthead-heading text-uppercase mb-0">FF Laundry</h1>
         <!-- Icon Divider-->
         <div class="divider-custom divider-light">
-            <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-            <div class="divider-custom-line"></div>
+            <div class="divider-custom-line" style="background-color: #F1F8E8"></div>
+            <div class="divider-custom-icon" style="color: #F1F8E8;"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line" style="background-color: #F1F8E8"></div>
         </div>
         <!-- Masthead Subheading-->
         <p class="masthead-subheading font-weight-light mb-0">Solusi tepat untuk yang tidak sempat</p>
     </div>
 </header>
-<section class="page-section" id="services">
+<section class="page-section" id="services" style="background-color: #F1F8E8; color: #55AD9B;">
     <div class="container">
-        <h1 class="page-section-heading text-center text-uppercase text-secondary mb-5">Layanan Kami</h1>
+        <h1 class="page-section-heading text-center text-uppercase  mb-5" style="color: #55AD9B;">Layanan Kami</h1>
         <div class="services-container">
             <div class="service-card">
                 <img src="{{ asset('assets/img/services/service1.jpg') }}" alt="Wash & Iron">
@@ -70,21 +70,21 @@ Home
         </div>
     </div>
 </section>
-<!-- About Section-->
-<section class="page-section bg-primary text-white mb-0" id="about">
+<!-- About Section -->
+<section class="page-section" id="about" style="background-color: #55AD9B; color: #F1F8E8;">
     <div class="container">
         <!-- About Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-color: #55AD9B">About</h2>
         <!-- Icon Divider-->
         <div class="divider-custom divider-light">
-            <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-            <div class="divider-custom-line"></div>
+            <div class="divider-custom-line" style="background-color: #F1F8E8;"></div>
+            <div class="divider-custom-icon" style="color: #F1F8E8;"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line" style="background-color: #F1F8E8;"></div>
         </div>
         <!-- About Section Content-->
         <div class="row">
             <div class="col-lg-4 ms-auto">
-                <p class="lead">Selamat datang di FF Laundry, . Misi kami adalah menyediakan layanan laundry terbaik
+                <p class="lead">Selamat datang di FF Laundry, Perkenalkan saya Rahman pendiri FF Laundry. Misi kami adalah menyediakan layanan laundry terbaik
                     yang menggabungkan kualitas, kenyamanan, dan keterjangkauan. Dengan peralatan canggih dan deterjen
                     ramah lingkungan, kami memastikan pakaian Anda tidak hanya bersih namun juga dirawat dengan baik.
                 </p>
@@ -103,15 +103,15 @@ Home
     </div>
 </section>
 <!-- Contact Section-->
-<section class="page-section" id="contact">
+<section class="page-section" id="contact" style="background-color: #F1F8E8; color: #55AD9B;>
     <div class="container">
         <!-- Contact Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Hubungi kami</h2>
+        <h2 class="page-section-heading text-center text-uppercase mb-0 style="color: #55AD9B;">Hubungi kami</h2>
         <!-- Icon Divider-->
         <div class="divider-custom">
-            <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-            <div class="divider-custom-line"></div>
+            <div class="divider-custom-line" style="background-color: #55AD9B;"></div>
+            <div class="divider-custom-icon" style="color: #55AD9B;"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line" style="background-color: #55AD9B;"></div>
         </div>
         <!-- Contact Section Form-->
         <div class="row justify-content-center">
