@@ -7,7 +7,9 @@ modify .env to connect to a database and run `php artisan migrate`
 
 run vite manifest with `npm run dev`
 
-generate encryption key with `php artisan key:generate`
+run laravel with `php artisan serve`
+
+don't forget to generate encryption key with `php artisan key:generate`
 
 ## Login info
 when the database is seeded, access admin with
