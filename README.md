@@ -18,7 +18,7 @@ when the database is seeded, access admin with
 
 (if you didn't seed admin try running `php artisan db:seed --class=AdminUserSeeder`)
 
-## Galllery
+## Gallery
 
 <img width="1920" height="1080" alt="messageImage_1749822104542" src="https://github.com/user-attachments/assets/77b3bf21-c155-4245-849e-6bea7a19ebc6" />
 <img width="1920" height="1080" alt="messageImage_1749822113419" src="https://github.com/user-attachments/assets/d629a225-464d-4c0b-8377-07b460230643" />
